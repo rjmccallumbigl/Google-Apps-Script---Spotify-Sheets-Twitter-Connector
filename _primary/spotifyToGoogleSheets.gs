@@ -13,7 +13,7 @@
  * 6. Create a Twitter Developer account and create a new app: https://developer.twitter.com/en/portal/dashboard
  * 7. Save the keys and tokens from your new Twitter app in the sendTweet() function in helpers/twitterFunctions.gs.
  * 8. If not already added, add the OAuth2 Library by the Script ID: 1B7FSrk5Zi6L1rSxxTDgDEUsPzlukDsi4KGuTMorsTQHhGBzBkMun4iDF. Use the latest version.
- * 9. If not already added, add the OAuth2 Library by the Script ID: 1B7FSrk5Zi6L1rSxxTDgDEUsPzlukDsi4KGuTMorsTQHhGBzBkMun4iDF. Use the latest version.
+ * 9. If not already added, add the Twitter Library by the Script ID: 11dB74uW9VLpgvy1Ax3eBZ8J7as0ZrGtx4BPw7RKK-JQXyAJHBx98pY-7. Use the latest version and name it Twitter.
  * 10. Run the function spotifyToGoogleSheets() in _primary/spotifyToGoogleSheets.
  * 11. On the first run through you'll see a URL generated in the Console Log: "Open the following URL and re-run the script: <<URL>>". Open the URL in a new tab.
  * 12. Agree to the Spotify app authorization request to authorize your script using OAuth.
