@@ -9,10 +9,13 @@
 
 function setArraySheet(spreadsheet, array, sheetName) {
   // Select the sheet and set values  
+
   try {
     sheet = spreadsheet.insertSheet(sheetName);
+    console.log("Creating sheet " + sheetName);
   } catch (e) {
     sheet = spreadsheet.getSheetByName(sheetName).clear();
+    console.log("Recreating sheet " + sheetName);
   }
   sheet.setFrozenRows(1);
   sheet.getRange(1, 1, array.length, array[0].length).setValues(array);
