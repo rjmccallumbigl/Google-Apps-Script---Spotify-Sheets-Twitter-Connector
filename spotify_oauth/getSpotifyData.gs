@@ -5,7 +5,7 @@
  * 
  * @return {Array} error message if one is received, otherwise returns the array of songs from the playlist
  * 
- * https://script.google.com/macros/d/1lCFkj11CegtV9XyDpqPaRAqk_DlfZzTXo9q6EbdQfd_djjVpWsk2k61u/usercallback
+ * https://script.google.com/macros/d/{ScriptID}/usercallback
  * 
  * Sources
  * https://github.com/benlcollins/apps_script_apis/blob/master/api_012_spotify/api_012_spotify_code.gs
@@ -18,10 +18,10 @@
  * https://stackoverflow.com/questions/54856992/spotify-api-authorisation-via-google-apps-script
  * 
  * Deployment ID
- * AKfycbytJDm49ZWklHqF0IKJehfk4T6ZPgo7vr5L47sQf2_2v1FpHdfD1HZx4snVFA8fcIGBrg
+ * {ScriptID}
  * 
  * Web app
- * https://script.google.com/macros/s/AKfycbytJDm49ZWklHqF0IKJehfk4T6ZPgo7vr5L47sQf2_2v1FpHdfD1HZx4snVFA8fcIGBrg/exec
+ * https://script.google.com/macros/s/{ScriptID}/exec
  *
  ******************************************************************************************************/
 
