@@ -1,6 +1,10 @@
 /******************************************************************************************************
  * Get a playlist with track contents from Spotify using OAuth2
  * 
+ * @param {String} spotifyPlaylist playlist ID, can obtain from URL of playlist
+ * 
+ * @return {Array} error message if one is received, otherwise returns the array of songs from the playlist
+ * 
  * https://script.google.com/macros/d/1lCFkj11CegtV9XyDpqPaRAqk_DlfZzTXo9q6EbdQfd_djjVpWsk2k61u/usercallback
  * 
  * Sources
@@ -21,13 +25,14 @@
  *
  ******************************************************************************************************/
 
-function getSpotifyData() {
-  // set up the service
+function getSpotifyData(spotifyPlaylist) {
+  
+  // Set up the service
   var spotifyService = getSpotifyService_();
 
   if (spotifyService.hasAccess()) {
     try {
-      console.log("App has access.");
+      // console.log("App has access.");
 
       // Grab playlist data in sets of 100 (limited by API)
       var limit = 100;
@@ -35,7 +40,6 @@ function getSpotifyData() {
       var offsetText = "";
       var totalArray = [];
       var base = "https://api.spotify.com";
-      var spotifyPlaylist = ""; // Enter your playlist ID, can obtain from URL of playlist
 
       // Examples of endpoints:
       // var endpoint = "/v1/me";
