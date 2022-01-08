@@ -19,7 +19,7 @@ function getSpotifyService_() {
     .setClientSecret(CLIENT_SECRET)
     .setCallbackFunction('authCallback')
     .setPropertyStore(PropertiesService.getUserProperties())
-    .setScope('user-library-read playlist-read-private playlist-read-collaborative');
+    .setScope('user-library-read playlist-read-private playlist-read-collaborative playlist-modify-public playlist-modify-private');
 }
 
 // Logs the redirect URI to register. You can also get this from File > Project Properties
