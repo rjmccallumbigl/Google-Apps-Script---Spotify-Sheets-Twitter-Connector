@@ -9,6 +9,7 @@
 // Put Spotify ID and Secret here
 var CLIENT_ID = '';
 var CLIENT_SECRET = '';
+var USERNAME = '';
 
 // Configure the service
 function getSpotifyService_() {

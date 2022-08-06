@@ -14,8 +14,11 @@ function onOpen() {
   // Create menu
   ui.createMenu('Spotify')
     .addItem('Print Playlists to a Google Sheet', 'getPlaylists')
-    .addItem('Get Content of All Playlists', 'getAllPlaylists')
+    .addItem('Get Content of All Playlists', 'printAllPlaylists')
     .addItem('Tweet New Entries in a Playlist', 'spotifyToGoogleSheets')
+    .addSeparator()
+    .addItem('Add songs from an artist to a new playlist','addToArtistPlaylist')
+    .addItem('Add songs from an artist to My Current Playlist','addToMyCurrentPlaylist')
     .addToUi();
 
 // Move these sheets to the front of the spreadsheet
