@@ -1,3 +1,7 @@
+var DISCOVER_WEEKLY_ID = "ENTER_PLAYLIST_ID_HERE";
+var RELEASE_RADAR_ID = "ENTER_PLAYLIST_ID_HERE";
+var MY_CURRENT_PLAYLIST_ID = "ENTER_PLAYLIST_ID_HERE";
+
 /******************************************************************************************************
  *
  * Get Spotify playlists, grab the songs, and add to a Google Sheet and playlist.
@@ -9,9 +13,9 @@ function addSongsToPlaylistFromAnotherPlaylist() {
 
   // Declare variables
   var spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
-  var discoverWeekly = getSpotifyData("add playlist ID here");
+  var discoverWeekly = getSpotifyData("DISCOVER_WEEKLY_ID");
   var discoverWeeklyName = "Discover Weekly";
-  var releaseRadar = getSpotifyData("add playlist ID here");
+  var releaseRadar = getSpotifyData("RELEASE_RADAR_ID");
   var releaseRadarName = "Release Radar";
 
   // Change to Google Sheet format
@@ -23,8 +27,8 @@ function addSongsToPlaylistFromAnotherPlaylist() {
   setArraySheet(spreadsheet, releaseRadarSpotifyData, releaseRadarName);
 
   // Add to My Current Playlist
-  addSongsToPlaylists(discoverWeekly, "add playlist ID here");
-  addSongsToPlaylists(releaseRadar, "add playlist ID here");
+  addSongsToPlaylists(discoverWeekly, "MY_CURRENT_PLAYLIST_ID");
+  addSongsToPlaylists(releaseRadar, "MY_CURRENT_PLAYLIST_IDe");
 }
 
 /******************************************************************************************************

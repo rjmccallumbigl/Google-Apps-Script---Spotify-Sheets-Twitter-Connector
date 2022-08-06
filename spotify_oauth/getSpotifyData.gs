@@ -74,6 +74,12 @@ function getSpotifyData(spotifyPlaylist) {
         offset += 100;
       } while (responseCode == 200 && responseTextJSON.items.length != 0);
 
+    // Filter array to remove empty tracks
+    totalArray = totalArray.filter(function (key) {
+      return key.track != null;
+    });
+    // debugger;
+
       // Return array of collected data
       return totalArray;
 
