@@ -55,10 +55,14 @@ function convertSpotifyDataToGoogleSheet(spotifyObj, newKey) {
             return spotifyObj[x][key];
           }
         }
-      } else if (key == "external_urls") {          
-            return spotifyObj[x][key].spotify;
-          // Return the date the song was added to the playlist
-        } else {
+        // Only return the URL
+      } else if (key == "external_urls") {
+        return spotifyObj[x][key].spotify;
+        // Only return number of tracks in the playlist 
+      } else if (key == "tracks") {
+        return spotifyObj[x][key].total;
+        // Return the date the song was added to the playlist
+      } else {
         return spotifyObj[x][key];
       }
     }));
