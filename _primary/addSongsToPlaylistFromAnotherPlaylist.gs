@@ -37,12 +37,13 @@ function addSongsToPlaylistFromAnotherPlaylist() {
  *
  * @param {Array} songArray The array of song data to add to the playlist
  * @param {Array} playlistID The ID of the playlist we want the songs added to
+ * @param {Object} playlistPayload If creating a new playlist, pass the required data to build it
  * 
  * @return {Array} error message if one is received, otherwise returns the array of songs from the playlist
  * 
  ******************************************************************************************************/
 
-function addSongsToPlaylists(songArray, playlistID) {
+function addSongsToPlaylists(songArray, playlistID, playlistPayload) {
 
   // set up the service
   var spotifyService = getSpotifyService_();
@@ -54,8 +55,6 @@ function addSongsToPlaylists(songArray, playlistID) {
     var limit = 25;
     var offset = 0;
     var base = "https://api.spotify.com";
-    var endpoint = "/v1/playlists/" + playlistID + "/tracks";
-    var uriArray = [];
 
     // Pass token to API through header
     var headers = {
@@ -65,16 +64,32 @@ function addSongsToPlaylists(songArray, playlistID) {
     var options = {
       "headers": headers,
       "method": "POST",
-      "muteHttpExceptions": true,
-      "payload": {}
+      "muteHttpExceptions": true
     };
 
-    // Filter song array to remove empty tracks and only return the URI
+    // Create new playlist if necessary
+    if (playlistPayload) {
+      options.payload = JSON.stringify(playlistPayload);
+      var playlistResponse = UrlFetchApp.fetch(base + "/v1/users/" + USERNAME + "/playlists", options);
+      // var playlistResponseCode = playlistResponse.getResponseCode();
+      var playlistResponseText = playlistResponse.getContentText();
+      var playlistResponseTextJSON = JSON.parse(playlistResponseText);
+      var playlistID = playlistResponseTextJSON.id;
+    }
+
+    var endpoint = "/v1/playlists/" + playlistID + "/tracks";
+    var uriArray = [];
+
+    // Filter song array to only return the URI
     var songArrayURIs = songArray.map(function (key) {
       if (key.track) {
         return key.track["uri"];
+      } else if (key.uri) {
+        return key.uri;
       }
     });
+
+    // Filter song array to remove empty tracks
     songArrayURIs = songArrayURIs.filter(function (key) {
       return key != undefined;
     });
@@ -91,6 +106,8 @@ function addSongsToPlaylists(songArray, playlistID) {
 
       var response = UrlFetchApp.fetch(base + endpoint + "?uris=" + encodeURIComponent(uriArray), options);
       var responseCode = response.getResponseCode();
+      var responseText = response.getContentText();
+      var responseTextJSON = JSON.parse(responseText);
       offset += uriArray.length;
       songArrayURIs = songArrayURIs.slice(limit, songArrayURIs.length);
     } while (responseCode == 201 && offset < songArray.length);
@@ -107,3 +124,4 @@ function addSongsToPlaylists(songArray, playlistID) {
     return { "errorMessage": "Authorize and rerun: " + authorizationUrl };
   }
 }
+
