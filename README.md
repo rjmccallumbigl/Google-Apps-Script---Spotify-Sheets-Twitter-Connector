@@ -8,9 +8,11 @@ Connects Spotify + Google Apps Script + Twitter. Has functionality like converti
 
 - Output list of Spotify playlist(s) to a Google Sheet
 - Output all Spotify playlists to their Google Sheets
-- Tweet every entry in a playlist so when you add a song to a playlist, it shares on Twitter
-- Add all songs from a rotating playlist (e.g. Discover Weekly & Release Radar) to a static playlist so you don't miss the recommended songs when they refresh
+- Tweet every entry in a playlist so when you add a song to a playlist, it shares on Twitter (NOTE [May 2024] - this functionality is no longer being tested after Twitter started circling the drain so this can be considered deprecated)
+- Add all songs from a rotating playlist (e.g. Discover Weekly & Release Radar) to a static playlist on a weekly basis so you don't miss the recommended songs when they refresh
 - Add all songs/features from an artist to their own playlist
+- Remove songs from a playlist if they've already been detected in another playlist
+- Remove songs from a playlist if it's greyed out (unplayable)
 
 ## Instructions (Pre-Requisite)
 
@@ -27,6 +29,8 @@ Connects Spotify + Google Apps Script + Twitter. Has functionality like converti
 10. When you see "**Success! You can close this tab.**", go back to the script and re-run the function `spotifyToGoogleSheets()` in `_primary/spotifyToGoogleSheets.gs`.
 
 ### Tweeting Playlist Entries
+
+NOTE [May 2024] - this functionality is no longer being tested after Twitter started circling the drain so this can be considered deprecated
 
 1. Create a Twitter Developer account and create a new app: https://developer.twitter.com/en/portal/dashboard
 2. Save the keys and tokens from your new Twitter app in the `sendTweet()` function in `helpers/twitterFunctions.gs`.
@@ -56,3 +60,16 @@ Connects Spotify + Google Apps Script + Twitter. Has functionality like converti
 1. Run `Add songs from an artist to a new playlist` from the Google Sheet. This will get the specified Spotify artist, grab the songs, add to a Google Sheet and then add to a new playlist. Helpful for checking out an artist's album songs, singles, and features.
 2. Run `Add songs from an artist to My Current Playlist` from the Google Sheet. This will get the specified Spotify artist, grab the songs, add to a Google Sheet and then add to a specified playlist instead of a new one.
 3. If you want to specify a different playlist, update the variables in `_primary/addToArtistPlaylist`.
+
+### Removing Tracks Programmatically
+
+1. Go to `spotifyDeDuper.gs` and under `RunnerForDeDuper()`, there are a couple functions to run. Uncomment the one you'd like to run and comment the other ones. Would only recommend running one at a time to not surpass the 5 minute limit. These are limited to ~25 tracks per batch so if you have more in your playlist, create a trigger to rerun the `RunnerForDeDuper()` function every 10 minutes or so until it is no longer returning entries.
+
+#### Deduplication
+
+- `spotifyDeduper(playlist1ID, playlist2ID)`: Compares tracks between two Spotify playlists and removes songs from the second playlist if they are also found in the first.
+- `spotifySingleDeduper(playlistID)`: Finds duplicate tracks within a Spotify playlist and prints them to a Google Sheet.
+
+#### Remove Unplayable Tracks
+
+- `removeUnavailableTracks(playlistID)`: Removes tracks from a Spotify playlist that are unavailable in any markets and have no preview URL.
