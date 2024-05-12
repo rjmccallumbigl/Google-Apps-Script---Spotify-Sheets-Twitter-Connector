@@ -17,6 +17,8 @@ function setArraySheet(spreadsheet, array, sheetName) {
     sheet = spreadsheet.getSheetByName(sheetName).clear();
     console.log("Recreating sheet " + sheetName);
   }
+  SpreadsheetApp.flush();
   sheet.setFrozenRows(1);
+  SpreadsheetApp.flush();
   sheet.getRange(1, 1, array.length, array[0].length).setValues(array);
 }
