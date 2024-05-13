@@ -29,8 +29,7 @@ function getSpotifyArtist(spotifyArtist) {
       // var endpoint = "/v1/me";
       // var endpoint = "/v1/me/tracks";
       // var endpoint = "/v1/me/playlists?limit=50";    
-      var endpoint = "/v1/search?q=" + encodeURIComponent(spotifyArtist) + "&type=artist&market=US&locale=en-US%2Cen%3Bq%3D0.9";
-      // https://api.spotify.com/v1/search?query=rakim&type=artist&market=US&locale=en-US%2Cen%3Bq%3D0.9&offset=0&limit=20
+      var endpoint = "/v1/search?q=" + encodeURIComponent(spotifyArtist) + "&type=artist&market=US&locale=en-US%2Cen%3Bq%3D0.9";      
 
       // Pass token to API through header
       var headers = {
