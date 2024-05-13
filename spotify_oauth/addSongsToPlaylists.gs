@@ -38,7 +38,7 @@ function addSongsToPlaylists(songArray, playlistID, playlistPayload) {
     if (playlistPayload) {
       options.payload = JSON.stringify(playlistPayload);
       var playlistResponse = UrlFetchApp.fetch(base + "/v1/users/" + USERNAME + "/playlists", options);
-      // var playlistResponseCode = playlistResponse.getResponseCode();
+      //var playlistResponseCode = playlistResponse.getResponseCode();
       var playlistResponseText = playlistResponse.getContentText();
       var playlistResponseTextJSON = JSON.parse(playlistResponseText);
       var playlistID = playlistResponseTextJSON.id;
@@ -77,7 +77,7 @@ function addSongsToPlaylists(songArray, playlistID, playlistPayload) {
       var responseTextJSON = JSON.parse(responseText);
       offset += uriArray.length;
       songArrayURIs = songArrayURIs.slice(limit, songArrayURIs.length);
-    } while (responseCode == 201 && offset < songArray.length);
+    } while (responseCode >= 200 && responseCode < 400 && offset < songArray.length);
     console.log("Added " + offset + " tracks to playlist");
     if (offset < songArray.length) {
       console.warn("Added less songs than total number of songs in playlist passed to function. Processed " + offset + " but function was passed " + songArray.length + " songs. This may be because Spotify delisted some of the tracks from the playlist but you may want to double check.");
